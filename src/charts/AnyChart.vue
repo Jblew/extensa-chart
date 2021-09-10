@@ -18,10 +18,6 @@ export default class View extends Vue {
     pie: "PieChart",
   };
 
-  get configJSON(): string {
-    return JSON.stringify(this.config || {}, undefined, 2);
-  }
-
   get chart(): TAnyChart {
     return this.config.chart;
   }

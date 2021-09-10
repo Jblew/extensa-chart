@@ -15,7 +15,6 @@ export default class PieChartVue extends Mixins(Pie) {
 
   mounted(): void {
     const values = this.chart.values;
-    // Overwriting base render method with actual data.
     this.renderChart({
       labels: values.map((v) => v.label),
       datasets: [
