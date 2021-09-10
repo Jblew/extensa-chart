@@ -1,5 +1,5 @@
 <template>
-  <p>Some help info</p>
+  <p>Extensa chart</p>
 </template>
 
 <script lang="ts">
