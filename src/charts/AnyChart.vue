@@ -6,9 +6,10 @@
 import { Chart, AnyChart as TAnyChart } from "@/types";
 import { Component, Vue, Prop } from "vue-property-decorator";
 import PieChart from "@/charts/PieChart.vue";
+import ProgressBar from "@/charts/ProgressBar.vue";
 
 @Component({
-  components: { PieChart },
+  components: { PieChart, ProgressBar },
 })
 export default class View extends Vue {
   @Prop()
@@ -16,6 +17,7 @@ export default class View extends Vue {
 
   components: Record<string, any> = {
     pie: "PieChart",
+    progress: "ProgressBar",
   };
 
   get chart(): TAnyChart {
