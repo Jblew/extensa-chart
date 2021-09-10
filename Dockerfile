@@ -16,7 +16,7 @@ WORKDIR /srv
 COPY --from=schemaVerCheck /bin/schemaver-check /bin/schemaver-check
 COPY --from=gucci /bin/gucci /bin/gucci
 COPY --from=builder /app/dist/* /srv/
-ADD schema.json /srv/
+ADD public/schema.json /srv/
 ADD public/mocks /srv/mocks
 ADD Caddyfile.template /etc/caddy/Caddyfile.template
 

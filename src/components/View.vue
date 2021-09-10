@@ -5,7 +5,7 @@
       Loading, please wait...
     </div>
     <div v-else-if="config">
-      <code>{{ configJSON }}</code>
+      <any-chart :config="config" />
     </div>
   </div>
 </template>
@@ -13,8 +13,11 @@
 <script lang="ts">
 import { Chart } from "@/types";
 import { Component, Vue, Prop } from "vue-property-decorator";
+import AnyChart from "@/charts/AnyChart.vue";
 
-@Component
+@Component({
+  components: { AnyChart },
+})
 export default class View extends Vue {
   @Prop()
   configUrl!: string;
