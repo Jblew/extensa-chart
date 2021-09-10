@@ -1,5 +1,16 @@
 http://localhost {
     root * /srv
-    reverse_proxy /backend/* {{ .BACKEND_PROXY_URL }}
+
+    route /backend/* {
+        uri strip_prefix /backend
+
+        {{ if (index . "BACKEND_PROXY") }}
+        reverse_proxy {{ .BACKEND_PROXY }}
+        {{ else  }}
+        root * /srv/mocks
+        file_server browse
+        {{ end }}
+    }
+
     file_server browse
 }
