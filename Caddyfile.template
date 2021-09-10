@@ -1,4 +1,5 @@
 http://localhost {
     root * /srv
+    reverse_proxy /backend/* {{ .BACKEND_PROXY_URL }}
     file_server browse
 }

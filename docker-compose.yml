@@ -7,3 +7,5 @@ services:
       - 8082:80
     environment:
       SCHEMAVERCHECK_SKIP_REMOTE_CHECK: 1
+      BACKEND_PROXY_URL: http://nonexistent:80
+      BACKEND_BASE_URL: /mocks/
