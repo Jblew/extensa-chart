@@ -1,6 +1,10 @@
 <template>
   <div>
-    <extensa-chart-view config-url="/demo" />
+    <extensa-chart-view config-url="/mocks/pie.json" />
+    <hr />
+    <extensa-chart-view config-url="/mocks/progress.json" />
+    <hr />
+    <extensa-chart-view config-url="/mocks/nonexistent.json" />
   </div>
 </template>
 

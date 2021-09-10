@@ -1,21 +1,50 @@
 <template>
-  <div>extensa-chart: Would fetch config from '{{ configUrl }}' render extensa-chart</div>
+  <div>
+    <div v-if="error" class="error">Cannot fetch Chart config: {{ error }}</div>
+    <div v-else-if="loading" class="loading">
+      Loading, please wait...
+    </div>
+    <div v-else-if="config">
+      <code>{{ configJSON }}</code>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
+import { Chart } from "@/types";
 import { Component, Vue, Prop } from "vue-property-decorator";
 
 @Component
 export default class View extends Vue {
   @Prop()
-  configUrl!: string
+  configUrl!: string;
+  loading = true;
+  error = "";
+  config?: Chart;
+
+  get configJSON(): string {
+    return JSON.stringify(this.config || {}, undefined, 2);
+  }
+
+  mounted(): void {
+    this.loadConfig().then(
+      () => {
+        this.loading = false;
+      },
+      (err: any) => {
+        this.loading = false;
+        this.error = `${err.message}`;
+      }
+    );
+  }
+
+  private async loadConfig() {
+    this.config = await fetch(this.configUrl).then((resp) => resp.json());
+  }
 }
 </script>
 <style scoped>
-div {
-  background: blue;
-  color:white;
-  padding: 1rem;
-  font-family: monospace;
+.error {
+  color: red;
 }
 </style>
