@@ -9,15 +9,18 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "chart.js": "^3.5.1",
+    "chart.js": "^2.9.4",
+    "color-hash": "^2.0.1",
     "core-js": "^3.6.5",
     "d3": "^7.0.1",
     "vue": "^2.6.11",
+    "vue-chartjs": "^3.5.1",
     "vue-class-component": "^7.2.3",
     "vue-property-decorator": "^9.1.2"
   },
   "devDependencies": {
     "@types/chai": "^4.2.11",
+    "@types/color-hash": "^1.0.1",
     "@types/d3": "^7.0.0",
     "@types/mocha": "^5.2.4",
     "@types/uuid": "^8.3.1",

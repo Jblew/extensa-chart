@@ -5,7 +5,7 @@
       Loading, please wait...
     </div>
     <div v-else-if="config">
-      <any-chart :config="config" />
+      <any-chart :config="config" @refresh="refresh()" />
     </div>
   </div>
 </template>
@@ -30,19 +30,22 @@ export default class View extends Vue {
   }
 
   mounted(): void {
-    this.loadConfig().then(
-      () => {
-        this.loading = false;
-      },
-      (err: any) => {
-        this.loading = false;
-        this.error = `${err.message}`;
-      }
-    );
+    this.loadConfig();
+  }
+
+  refresh(): void {
+    this.loadConfig();
   }
 
   private async loadConfig() {
-    this.config = await fetch(this.configUrl).then((resp) => resp.json());
+    this.loading = true;
+    this.error = "";
+    try {
+      this.config = await fetch(this.configUrl).then((resp) => resp.json());
+    } catch (err) {
+      this.error = `${err.message}`;
+    }
+    this.loading = false;
   }
 }
 </script>

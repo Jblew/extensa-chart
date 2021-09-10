@@ -1,5 +1,5 @@
 <template>
-  <component :is="component" :chart="chart" />
+  <component :is="component" :chart="chart" @refresh="$emit('refresh')" />
 </template>
 
 <script lang="ts">
