@@ -1,0 +1,10 @@
+{
+  "chart": {
+    "type": "pie",
+    "values": [
+      { "label": "Wise people", "value": 0.62 },
+      { "label": "Wiser people", "value": 0.32 },
+      { "label": "Wisest people", "value": 0.06, "colorHex": "#ff0000" }
+    ]
+  }
+}
