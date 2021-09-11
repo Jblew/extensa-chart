@@ -12,7 +12,7 @@ import ProgressBar from "@/charts/ProgressBar.vue";
   components: { PieChart, ProgressBar },
 })
 export default class View extends Vue {
-  @Prop()
+  @Prop({ required: true })
   config!: Chart;
 
   components: Record<string, any> = {

@@ -19,25 +19,27 @@ import AnyChart from "@/charts/AnyChart.vue";
   components: { AnyChart },
 })
 export default class View extends Vue {
-  @Prop()
+  @Prop({ required: true })
   configUrl!: string;
+
+  @Prop({ required: true, type: String })
+  componentSrc!: string;
+
   loading = true;
   error = "";
   config?: Chart;
 
-  get configJSON(): string {
-    return JSON.stringify(this.config || {}, undefined, 2);
+  get configUrlResolved(): string {
+    const base = this.componentSrc
+      .split("/")
+      .slice(0, -1)
+      .join("/");
+    const separator =
+      base.endsWith("/") && this.configUrl.startsWith("/") ? "" : "/";
+    return `${base}${separator}${this.configUrl}`.replace(/\/\//i, "/");
   }
 
   mounted(): void {
-    console.log(
-      "extensa-chart-view: this.$root.$data.currentScript",
-      this.$root.$data.currentScript
-    );
-    console.log(
-      "extensa-chart-view: this.$root.$data.currentScript.src",
-      `'${this.$root.$data.currentScript.src}'`
-    );
     this.loadConfig();
   }
 
@@ -49,7 +51,9 @@ export default class View extends Vue {
     this.loading = true;
     this.error = "";
     try {
-      this.config = await fetch(this.configUrl).then((resp) => resp.json());
+      this.config = await fetch(this.configUrlResolved).then((resp) =>
+        resp.json()
+      );
     } catch (err) {
       this.error = `${err.message}`;
     }
