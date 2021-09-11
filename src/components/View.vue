@@ -18,25 +18,22 @@ import AnyChart from "@/charts/AnyChart.vue";
 @Component({
   components: { AnyChart },
 })
-export default class View extends Vue {
+export default class ExtensaChartView extends Vue {
   @Prop({ required: true })
   configUrl!: string;
 
   @Prop({ required: true, type: String })
-  componentSrc!: string;
+  componentBaseUrl!: string;
 
   loading = true;
   error = "";
   config?: Chart;
 
-  get configUrlResolved(): string {
-    const base = this.componentSrc
-      .split("/")
-      .slice(0, -1)
-      .join("/");
-    const separator =
-      base.endsWith("/") && this.configUrl.startsWith("/") ? "" : "/";
-    return `${base}${separator}${this.configUrl}`.replace(/\/\//i, "/");
+  resolveConfigURL(): string {
+    const configUrlSanitized = this.configUrl.substring(
+      this.configUrl.startsWith("/") ? 1 : 0
+    );
+    return `${this.componentBaseUrl}/${configUrlSanitized}`;
   }
 
   mounted(): void {
@@ -50,11 +47,14 @@ export default class View extends Vue {
   private async loadConfig() {
     this.loading = true;
     this.error = "";
+    const resolvedConfigURL = this.resolveConfigURL();
     try {
-      this.config = await fetch(this.configUrlResolved).then((resp) =>
-        resp.json()
-      );
+      this.config = await fetch(resolvedConfigURL).then((resp) => resp.json());
     } catch (err) {
+      console.error(
+        `extensa-chart cannot load config from ${resolvedConfigURL}`,
+        err
+      );
       this.error = `${err.message}`;
     }
     this.loading = false;

@@ -11,7 +11,7 @@ import ProgressBar from "@/charts/ProgressBar.vue";
 @Component({
   components: { PieChart, ProgressBar },
 })
-export default class View extends Vue {
+export default class AnyChart extends Vue {
   @Prop({ required: true })
   config!: Chart;
 

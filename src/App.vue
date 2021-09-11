@@ -1,20 +1,17 @@
 <template>
   <div>
     <h2>Basic charts</h2>
-    <extensa-chart-view
-      config-url="/mocks/pie.json"
-      component-src="/script.js"
-    />
+    <extensa-chart-view config-url="/mocks/pie.json" component-base-url="" />
     <hr />
     <extensa-chart-view
       config-url="/mocks/progress.json"
-      component-src="/script.js"
+      component-base-url=""
     />
     <hr />
     <h2>Should fail fetching JSON</h2>
     <extensa-chart-view
       config-url="/mocks/nonexistent.json"
-      component-src="/script.js"
+      component-base-url=""
     />
     <hr />
     <h2>Automatically faked charts</h2>
