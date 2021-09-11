@@ -20,7 +20,6 @@ ADD public/schema.json /srv/
 ADD public/mocks /srv/mocks
 ADD Caddyfile.template /etc/caddy/Caddyfile.template
 
-ENV BACKEND_BASE_URL=/backend/
 ENV SCHEMAVERCHECK_SCHEMA_FILE=/srv/schema.json
 CMD ["/bin/sh", "-c", "\
     schemaver-check --data-file /srv/mocks/pie.json --definition-name \"Chart\" && \
