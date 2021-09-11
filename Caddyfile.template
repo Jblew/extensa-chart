@@ -10,6 +10,8 @@ http://localhost {
         root * /srv/mocks
         file_server browse
         {{ end }}
+
+        header Access-Control-Allow-Headers "*"
     }
 
     file_server browse
