@@ -1,7 +1,7 @@
 http://localhost {
     root * /srv
 
-    header Access-Control-Allow-Headers "*"
+    header Access-Control-Allow-Origin "*"
 
     route /backend/* {
         uri strip_prefix /backend
