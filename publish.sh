@@ -4,7 +4,7 @@ cd "${DIR}"
 set -e
 
 BASE_TAG="jedrzejlewandowski/extensa-chart"
-VERSION="2.1.1"
+VERSION="2.1.2"
 
 git tag "v${VERSION}"
 git push origin "v${VERSION}"
