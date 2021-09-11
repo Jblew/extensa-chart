@@ -31,8 +31,12 @@ export default class View extends Vue {
 
   mounted(): void {
     console.log(
-      "extensa-chart-view: document.currentScript=",
-      document.currentScript
+      "extensa-chart-view: this.$root.$data.currentScript",
+      this.$root.$data.currentScript
+    );
+    console.log(
+      "extensa-chart-view: this.$root.$data.currentScript.src",
+      `'${this.$root.$data.currentScript.src}'`
     );
     this.loadConfig();
   }
