@@ -1,4 +1,4 @@
-http://localhost {
+http://* {
     root * /srv
 
     header Access-Control-Allow-Origin "*"
