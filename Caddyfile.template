@@ -15,4 +15,6 @@ http://* {
     }
 
     file_server browse
+
+    log
 }
