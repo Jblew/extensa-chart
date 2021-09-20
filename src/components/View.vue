@@ -33,7 +33,7 @@ export default class ExtensaChartView extends Vue {
     const configUrlSanitized = this.configUrl.substring(
       this.configUrl.startsWith("/") ? 1 : 0
     );
-    return `${this.componentBaseUrl}/${configUrlSanitized}`;
+    return `${this.componentBaseUrl}/backend/${configUrlSanitized}`;
   }
 
   mounted(): void {
